@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>java-angular-websocket-chat</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+
+    <script src="/js/lib/angular.min.js"></script>
+    <script src="/js/lib/angular-animate.min.js"></script>
+    <script src="/js/lib/angular-aria.min.js"></script>
+    <script src="/js/lib/angular-cookies.min.js"></script>
+    <script src="/js/lib/angular-loader.min.js"></script>
+    <script src="/js/lib/angular-message-format.min.js"></script>
+    <script src="/js/lib/angular-messages.min.js"></script>
+    <script src="/js/lib/angular-parse-ext.min.js"></script>
+    <script src="/js/lib/angular-resource.min.js"></script>
+    <script src="/js/lib/angular-route.min.js"></script>
+    <script src="/js/lib/angular-sanitize.min.js"></script>
+    <script src="/js/lib/angular-touch.min.js"></script>
+
+    <script src="/js/lib/sockjs-0.3.4.min.js"></script>
+    <script src="/js/lib/stomp.min.js"></script>
+
+    <script src="/js/app.js"></script>
+</head>
+<body>
+<div ng-controller="MessageListController as messageList" class="container-fluid">
+    <h1 class="page-header">My first chat on Angular 1.5 and Socket.IO</h1>
+
+    <div class="form-group">
+        <input ng-model="messageList.author" placeholder="Введите ваше имя" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <textarea ng-model="messageList.text" placeholder="Введите сообщение" rows="3" class="form-control"></textarea>
+    </div>
+    <form ng-submit="messageList.sendMessage()" class="form-group pull-right">
+        <button type="submit" class="btn btn-default">Отправить сообщение</button>
+    </form>
+    <div ng-repeat="message in messageList.messages">
+        <p>[{{message.date}}] - {{message.author}}: {{message.text}}</p>
+    </div>
+</div>
+</body>
+</html>

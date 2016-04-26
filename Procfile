@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar target/java-spring-angular-websocket-chat-1.0.jar
