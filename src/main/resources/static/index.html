@@ -28,17 +28,28 @@
 <div ng-controller="MessageListController as messageList" class="container-fluid">
     <h1 class="page-header">My first chat on Angular 1.5 and WebSocket</h1>
 
-    <div class="form-group">
-        <input ng-model="messageList.author" placeholder="Введите ваше имя" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <textarea ng-model="messageList.text" placeholder="Введите сообщение" rows="3" class="form-control"></textarea>
-    </div>
-    <form ng-submit="messageList.sendMessage()" class="form-group pull-right">
-        <button type="submit" class="btn btn-default">Отправить сообщение</button>
+    <form class="form-group row" ng-submit="messageList.login()" ng-show="!messageList.username">
+        <div class="col-md-11">
+            <input ng-model="messageList.author" placeholder="Введите ваше имя" class="form-control"/>
+        </div>
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-default btn-block">Войти</button>
+        </div>
     </form>
-    <div ng-repeat="message in messageList.messages">
-        <p>[{{message.date}}] - {{message.author}}: {{message.text}}</p>
+
+    <div ng-show="messageList.username">
+        <p>Пользователь: {{messageList.username}}</p>
+
+        <div class="form-group">
+            <textarea class="form-control" ng-model="messageList.text" placeholder="Введите сообщение" rows="3"
+                      my-enter="messageList.sendMessage()"></textarea>
+        </div>
+        <form ng-submit="messageList.sendMessage()" class="form-group pull-right">
+            <button type="submit" class="btn btn-default">Отправить сообщение</button>
+        </form>
+        <div ng-repeat="message in messageList.messages">
+            <p>[{{message.date}}] - {{message.author}}: {{message.text}}</p>
+        </div>
     </div>
 </div>
 </body>
